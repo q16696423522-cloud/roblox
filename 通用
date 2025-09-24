@@ -1,0 +1,302 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+print("多功能通用脚本已执行")
+print("正在初始化通用脚本2.0...")
+print("脚本加载完成，准备就绪！")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "UniversalScript2Gui"
+ScreenGui.Parent = playerGui
+ScreenGui.ResetOnSpawn = false
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 350, 0, 400)
+mainFrame.Position = UDim2.new(0.5, -175, 0.5, -200)
+mainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = false
+mainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 12)
+UICorner.Parent = mainFrame
+
+local function createRainbowBackground(frame)
+    local gradient = Instance.new("UIGradient")
+    gradient.Name = "RainbowGradient"
+    gradient.Rotation = 45
+    gradient.Parent = frame
+    
+    local rainbowColors = {
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+        ColorSequenceKeypoint.new(0.16, Color3.fromRGB(255, 127, 0)),
+        ColorSequenceKeypoint.new(0.33, Color3.fromRGB(255, 255, 0)),
+        ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)),
+        ColorSequenceKeypoint.new(0.66, Color3.fromRGB(0, 0, 255)),
+        ColorSequenceKeypoint.new(0.83, Color3.fromRGB(75, 0, 130)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(148, 0, 211))
+    }
+    
+    gradient.Color = ColorSequence.new(rainbowColors)
+    
+    local connection
+    connection = RunService.Heartbeat:Connect(function(deltaTime)
+        local currentOffset = gradient.Offset or Vector2.new(0, 0)
+        local newOffset = Vector2.new(
+            (currentOffset.X + deltaTime * 0.5) % 1,
+            (currentOffset.Y + deltaTime * 0.3) % 1
+        )
+        gradient.Offset = newOffset
+    end)
+    
+    return gradient, connection
+end
+
+local rainbowGradient, rainbowConnection = createRainbowBackground(mainFrame)
+
+local overlayFrame = Instance.new("Frame")
+overlayFrame.Name = "OverlayFrame"
+overlayFrame.Size = UDim2.new(1, 0, 1, 0)
+overlayFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+overlayFrame.BackgroundTransparency = 0.7
+overlayFrame.BorderSizePixel = 0
+overlayFrame.Parent = mainFrame
+
+local title = Instance.new("TextLabel")
+title.Name = "Title"
+title.Size = UDim2.new(1, 0, 0, 45)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+title.BackgroundTransparency = 0.5
+title.BorderSizePixel = 0
+title.Text = "通用脚本2.0"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 22
+title.Parent = overlayFrame
+
+local hideButton = Instance.new("TextButton")
+hideButton.Name = "HideButton"
+hideButton.Size = UDim2.new(0, 110, 0, 40)
+hideButton.Position = UDim2.new(1, -110, 1, -40)
+hideButton.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+hideButton.BorderSizePixel = 0
+hideButton.Text = "隐藏面板"
+hideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+hideButton.Font = Enum.Font.SourceSans
+hideButton.TextSize = 14
+hideButton.Parent = ScreenGui
+
+local UICorner2 = Instance.new("UICorner")
+UICorner2.CornerRadius = UDim.new(0, 6)
+UICorner2.Parent = hideButton
+
+local contentScrollingFrame = Instance.new("ScrollingFrame")
+contentScrollingFrame.Name = "ContentScrollingFrame"
+contentScrollingFrame.Size = UDim2.new(1, -10, 1, -55)
+contentScrollingFrame.Position = UDim2.new(0, 5, 0, 50)
+contentScrollingFrame.BackgroundTransparency = 1
+contentScrollingFrame.BorderSizePixel = 0
+contentScrollingFrame.ScrollBarThickness = 8
+contentScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+contentScrollingFrame.Parent = overlayFrame
+
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 10)
+UIListLayout.Parent = contentScrollingFrame
+
+local function ensureCharacter()
+    local character = player.Character
+    if not character then
+        player.CharacterAdded:Wait()
+        character = player.Character
+    end
+    return character
+end
+
+local function addButton(name, callback)
+    local button = Instance.new("TextButton")
+    button.Name = name
+    button.Size = UDim2.new(1, 0, 0, 45)
+    button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    button.BorderSizePixel = 0
+    button.Text = name
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.SourceSans
+    button.TextSize = 16
+    button.LayoutOrder = contentScrollingFrame:GetChildren().NumChildren
+    button.Parent = contentScrollingFrame
+    
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 6)
+    buttonCorner.Parent = button
+    
+    button.MouseButton1Click:Connect(function()
+        local success, errorMsg = pcall(callback)
+        if not success then
+            print("功能执行错误: " .. tostring(errorMsg))
+        end
+    end)
+    
+    contentScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
+end
+
+UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    contentScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y)
+end)
+
+addButton("超级跳跃", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.JumpPower = 100
+        humanoid.JumpHeight = 10
+    end
+end)
+
+addButton("无限速度", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = 50
+    end
+end)
+
+addButton("重力控制", function()
+    workspace.Gravity = 0
+    wait(1)
+    workspace.Gravity = 196.2
+end)
+
+addButton("无敌模式", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.MaxHealth = math.huge
+        humanoid.Health = math.huge
+    end
+end)
+
+addButton("穿墙模式", function()
+    local character = ensureCharacter()
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CanCollide = false
+        end
+    end
+end)
+
+addButton("隐身模式", function()
+    local character = ensureCharacter()
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.Transparency = 0.8
+            part.Material = Enum.Material.Glass
+        end
+    end
+end)
+
+addButton("体型放大", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.BodyHeightScale = 2
+        humanoid.BodyWidthScale = 2
+        humanoid.BodyDepthScale = 2
+    end
+end)
+
+addButton("体型缩小", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.BodyHeightScale = 0.5
+        humanoid.BodyWidthScale = 0.5
+        humanoid.BodyDepthScale = 0.5
+    end
+end)
+
+addButton("飞行模式", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Flying)
+    end
+end)
+
+addButton("超级力量", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.HipHeight = 5
+    end
+end)
+
+addButton("重置角色", function()
+    local character = ensureCharacter()
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.JumpPower = 50
+        humanoid.WalkSpeed = 16
+        humanoid.BodyHeightScale = 1
+        humanoid.BodyWidthScale = 1
+        humanoid.BodyDepthScale = 1
+        humanoid.HipHeight = 0
+        for _, part in pairs(character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = true
+                part.Transparency = 0
+                part.Material = Enum.Material.Plastic
+            end
+        end
+        workspace.Gravity = 196.2
+    end
+end)
+
+local dragging = false
+local dragInput, dragStart, startPos
+
+mainFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = mainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+mainFrame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input == dragInput then
+        local delta = input.Position - dragStart
+        mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
+hideButton.MouseButton1Click:Connect(function()
+    mainFrame.Visible = not mainFrame.Visible
+    if mainFrame.Visible then
+        hideButton.Text = "隐藏面板"
+    else
+        hideButton.Text = "显示面板"
+    end
+end)

@@ -1,0 +1,336 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local localPlayer = Players.LocalPlayer
+if not localPlayer then
+    localPlayer = Players.PlayerAdded:Wait()
+end
+
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local backpackItemsFolder = Instance.new("Folder")
+backpackItemsFolder.Name = "BackpackItemsCache"
+backpackItemsFolder.Parent = replicatedStorage
+
+local copiedItemsHistory = {}
+local itemCache = {}
+local uiElements = {}
+local hiddenState = false
+local dragConnection = nil
+local itemCheckInterval = 2
+local lastCheckTime = 0
+
+function createMainUI()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "ItemCopierUI"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = localPlayer:WaitForChild("PlayerGui")
+
+    local mainFrame = Instance.new("Frame")
+    mainFrame.Name = "MainFrame"
+    mainFrame.Size = UDim2.new(0, 300, 0, 400)
+    mainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
+    mainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+    mainFrame.BorderSizePixel = 0
+    mainFrame.Active = true
+    mainFrame.Draggable = true
+    mainFrame.Parent = screenGui
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 8)
+    corner.Parent = mainFrame
+
+    local dragHandle = Instance.new("TextLabel")
+    dragHandle.Name = "DragHandle"
+    dragHandle.Size = UDim2.new(1, 0, 0, 30)
+    dragHandle.Position = UDim2.new(0, 0, 0, 0)
+    dragHandle.BackgroundColor3 = Color3.fromRGB(65, 65, 65)
+    dragHandle.Text = "Item Copier v2.0"
+    dragHandle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    dragHandle.TextSize = 14
+    dragHandle.Font = Enum.Font.GothamBold
+    dragHandle.Parent = mainFrame
+
+    local hideButton = Instance.new("TextButton")
+    hideButton.Name = "HideButton"
+    hideButton.Size = UDim2.new(0, 100, 0, 25)
+    hideButton.Position = UDim2.new(0.5, -50, 1, -30)
+    hideButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    hideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    hideButton.Text = "Toggle Visibility"
+    hideButton.TextSize = 12
+    hideButton.Font = Enum.Font.Gotham
+    hideButton.Parent = mainFrame
+
+    local itemsListFrame = Instance.new("Frame")
+    itemsListFrame.Name = "ItemsListFrame"
+    itemsListFrame.Size = UDim2.new(1, -20, 1, -80)
+    itemsListFrame.Position = UDim2.new(0, 10, 0, 40)
+    itemsListFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    itemsListFrame.BorderSizePixel = 0
+    itemsListFrame.Parent = mainFrame
+
+    local listCorner = Instance.new("UICorner")
+    listCorner.CornerRadius = UDim.new(0, 6)
+    listCorner.Parent = itemsListFrame
+
+    local scrollFrame = Instance.new("ScrollingFrame")
+    scrollFrame.Name = "ScrollFrame"
+    scrollFrame.Size = UDim2.new(1, -10, 1, -10)
+    scrollFrame.Position = UDim2.new(0, 5, 0, 5)
+    scrollFrame.BackgroundTransparency = 1
+    scrollFrame.BorderSizePixel = 0
+    scrollFrame.ScrollBarThickness = 6
+    scrollFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    scrollFrame.Parent = itemsListFrame
+
+    local listLayout = Instance.new("UIListLayout")
+    listLayout.Padding = UDim.new(0, 5)
+    listLayout.Parent = scrollFrame
+
+    local statusLabel = Instance.new("TextLabel")
+    statusLabel.Name = "StatusLabel"
+    statusLabel.Size = UDim2.new(1, -20, 0, 20)
+    statusLabel.Position = UDim2.new(0, 10, 1, -60)
+    statusLabel.BackgroundTransparency = 1
+    statusLabel.Text = "Ready to scan items..."
+    statusLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    statusLabel.TextSize = 12
+    statusLabel.Font = Enum.Font.Gotham
+    statusLabel.Parent = mainFrame
+
+    uiElements.screenGui = screenGui
+    uiElements.mainFrame = mainFrame
+    uiElements.dragHandle = dragHandle
+    uiElements.hideButton = hideButton
+    uiElements.itemsListFrame = itemsListFrame
+    uiElements.scrollFrame = scrollFrame
+    uiElements.statusLabel = statusLabel
+
+    return screenGui
+end
+
+function setupDragBehavior(frame, handle)
+    local dragToggle = false
+    local dragInput = nil
+    local dragStart = nil
+    local startPosition = nil
+
+    local function updateInput(input)
+        local delta = input.Position - dragStart
+        local newPosition = UDim2.new(startPosition.X.Scale, startPosition.X.Offset + delta.X, startPosition.Y.Scale, startPosition.Y.Offset + delta.Y)
+        frame.Position = newPosition
+    end
+
+    handle.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragToggle = true
+            dragStart = input.Position
+            startPosition = frame.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragToggle = false
+                end
+            end)
+        end
+    end)
+
+    handle.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragToggle then
+            updateInput(input)
+        end
+    end)
+end
+
+function isItemValid(item)
+    if not item then return false end
+    if item:IsA("Tool") or item:IsA("HopperBin") then
+        return true
+    end
+    return false
+end
+
+function getItemUniqueId(item)
+    if item and item:IsA("Tool") then
+        return item.Name .. "_" .. tostring(item.ToolTip)
+    end
+    return item.Name
+end
+
+function itemExistsInHistory(itemId)
+    for _, id in ipairs(copiedItemsHistory) do
+        if id == itemId then
+            return true
+        end
+    end
+    return false
+end
+
+function addItemToHistory(itemId)
+    if not itemExistsInHistory(itemId) then
+        table.insert(copiedItemsHistory, itemId)
+    end
+end
+
+function copyItemToLocalPlayer(item)
+    if not item or not item:IsDescendantOf(game) then
+        return false
+    end
+
+    local itemId = getItemUniqueId(item)
+    if itemExistsInHistory(itemId) then
+        return false
+    end
+
+    local success, result = pcall(function()
+        local clone = item:Clone()
+        clone.Parent = localPlayer.Backpack
+        addItemToHistory(itemId)
+        return true
+    end)
+
+    return success
+end
+
+function scanPlayerBackpack(player)
+    if player == localPlayer then return end
+    
+    local backpack = player:FindFirstChild("Backpack")
+    if not backpack then return end
+
+    for _, item in ipairs(backpack:GetChildren()) do
+        if isItemValid(item) then
+            local itemId = getItemUniqueId(item)
+            if not itemCache[itemId] then
+                itemCache[itemId] = true
+                copyItemToLocalPlayer(item)
+                addItemToUIList(item)
+            end
+        end
+    end
+end
+
+function scanAllPlayers()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= localPlayer then
+            scanPlayerBackpack(player)
+        end
+    end
+end
+
+function addItemToUIList(item)
+    local itemFrame = Instance.new("Frame")
+    itemFrame.Name = "ItemFrame_" .. item.Name
+    itemFrame.Size = UDim2.new(1, -10, 0, 30)
+    itemFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    itemFrame.BorderSizePixel = 0
+
+    local itemCorner = Instance.new("UICorner")
+    itemCorner.CornerRadius = UDim.new(0, 4)
+    itemCorner.Parent = itemFrame
+
+    local itemLabel = Instance.new("TextLabel")
+    itemLabel.Name = "ItemLabel"
+    itemLabel.Size = UDim2.new(0.7, 0, 1, 0)
+    itemLabel.Position = UDim2.new(0, 5, 0, 0)
+    itemLabel.BackgroundTransparency = 1
+    itemLabel.Text = item.Name
+    itemLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    itemLabel.TextSize = 12
+    itemLabel.TextXAlignment = Enum.TextXAlignment.Left
+    itemLabel.Font = Enum.Font.Gotham
+    itemLabel.Parent = itemFrame
+
+    local statusLabel = Instance.new("TextLabel")
+    statusLabel.Name = "StatusLabel"
+    statusLabel.Size = UDim2.new(0.3, 0, 1, 0)
+    statusLabel.Position = UDim2.new(0.7, 0, 0, 0)
+    statusLabel.BackgroundTransparency = 1
+    statusLabel.Text = "Copied"
+    statusLabel.TextColor3 = Color3.fromRGB(100, 255, 100)
+    statusLabel.TextSize = 10
+    statusLabel.Font = Enum.Font.Gotham
+    statusLabel.Parent = itemFrame
+
+    itemFrame.Parent = uiElements.scrollFrame
+end
+
+function updateStatusMessage(message, color)
+    if uiElements.statusLabel then
+        uiElements.statusLabel.Text = message
+        if color then
+            uiElements.statusLabel.TextColor3 = color
+        end
+    end
+end
+
+function toggleUIVisibility()
+    hiddenState = not hiddenState
+    local targetTransparency = hiddenState and 1 or 0
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    
+    for elementName, element in pairs(uiElements) do
+        if elementName ~= "hideButton" and element:IsA("GuiObject") then
+            local tween = TweenService:Create(element, tweenInfo, {BackgroundTransparency = targetTransparency})
+            tween:Play()
+            if element:FindFirstChildWhichIsA("TextLabel") then
+                local textTween = TweenService:Create(element:FindFirstChildWhichIsA("TextLabel"), tweenInfo, {TextTransparency = targetTransparency})
+                textTween:Play()
+            end
+            if element:FindFirstChildWhichIsA("TextButton") then
+                local buttonTween = TweenService:Create(element:FindFirstChildWhichIsA("TextButton"), tweenInfo, {TextTransparency = targetTransparency})
+                buttonTween:Play()
+            end
+        end
+    end
+end
+
+function initializeEventHandlers()
+    Players.PlayerAdded:Connect(function(player)
+        player.CharacterAdded:Connect(function()
+            wait(3)
+            scanPlayerBackpack(player)
+        end)
+    end)
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= localPlayer then
+            player.CharacterAdded:Connect(function()
+                wait(3)
+                scanPlayerBackpack(player)
+            end)
+        end
+    end
+
+    uiElements.hideButton.MouseButton1Click:Connect(toggleUIVisibility)
+
+    localPlayer.Backpack.ChildAdded:Connect(function(child)
+        if isItemValid(child) then
+            updateStatusMessage("New item added: " .. child.Name, Color3.fromRGB(100, 200, 255))
+        end
+    end)
+end
+
+function mainLoop()
+    while true do
+        local currentTime = tick()
+        if currentTime - lastCheckTime >= itemCheckInterval then
+            scanAllPlayers()
+            lastCheckTime = currentTime
+            updateStatusMessage("Scanning completed at " .. os.date("%X"), Color3.fromRGB(200, 200, 100))
+        end
+        wait(1)
+    end
+end
+
+createMainUI()
+setupDragBehavior(uiElements.mainFrame, uiElements.dragHandle)
+initializeEventHandlers()
+spawn(mainLoop)

@@ -1,0 +1,215 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local gui = Instance.new("ScreenGui")
+gui.Name = "PrivateAreaUI"
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 400, 0, 450)
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -225)
+mainFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+mainFrame.BorderSizePixel = 0
+mainFrame.ClipsDescendants = true
+mainFrame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = mainFrame
+
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 2
+stroke.Color = Color3.fromRGB(100, 100, 100)
+stroke.Parent = mainFrame
+
+local dragButton = Instance.new("TextButton")
+dragButton.Name = "DragButton"
+dragButton.Size = UDim2.new(1, 0, 0, 40)
+dragButton.Position = UDim2.new(0, 0, 0, 0)
+dragButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+dragButton.Text = "Private Area (Drag Here)"
+dragButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+dragButton.TextSize = 14
+dragButton.BorderSizePixel = 0
+dragButton.Parent = mainFrame
+
+local dragCorner = Instance.new("UICorner")
+dragCorner.CornerRadius = UDim.new(0, 12)
+dragCorner.Parent = dragButton
+
+local hideButton = Instance.new("TextButton")
+hideButton.Name = "HideButton"
+hideButton.Size = UDim2.new(0, 120, 0, 35)
+hideButton.Position = UDim2.new(1, -130, 0, 5)
+hideButton.AnchorPoint = Vector2.new(1, 0)
+hideButton.BackgroundColor3 = Color3.fromRGB(80, 80, 200)
+hideButton.Text = "Toggle Hide"
+hideButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+hideButton.TextSize = 12
+hideButton.BorderSizePixel = 0
+hideButton.Parent = mainFrame
+
+local hideCorner = Instance.new("UICorner")
+hideCorner.CornerRadius = UDim.new(0, 8)
+hideCorner.Parent = hideButton
+
+local contentFolder = Instance.new("Folder")
+contentFolder.Name = "HideableContent"
+contentFolder.Parent = mainFrame
+
+local element1 = Instance.new("TextLabel")
+element1.Name = "StatusLabel"
+element1.Size = UDim2.new(0, 300, 0, 50)
+element1.Position = UDim2.new(0.5, -150, 0, 60)
+element1.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+element1.Text = "Welcome to Private Area\nOnly you can access this UI."
+element1.TextColor3 = Color3.fromRGB(255, 255, 255)
+element1.TextSize = 14
+element1.BorderSizePixel = 0
+element1.Parent = contentFolder
+
+local element1Corner = Instance.new("UICorner")
+element1Corner.CornerRadius = UDim.new(0, 8)
+element1Corner.Parent = element1
+
+local element2 = Instance.new("TextButton")
+element2.Name = "ActionButton"
+element2.Size = UDim2.new(0, 200, 0, 45)
+element2.Position = UDim2.new(0.5, -100, 0, 130)
+element2.BackgroundColor3 = Color3.fromRGB(70, 70, 150)
+element2.Text = "Perform Action"
+element2.TextColor3 = Color3.fromRGB(255, 255, 255)
+element2.TextSize = 14
+element2.BorderSizePixel = 0
+element2.Parent = contentFolder
+
+local element2Corner = Instance.new("UICorner")
+element2Corner.CornerRadius = UDim.new(0, 8)
+element2Corner.Parent = element2
+
+local element3 = Instance.new("TextBox")
+element3.Name = "InputField"
+element3.Size = UDim2.new(0, 350, 0, 40)
+element3.Position = UDim2.new(0.5, -175, 0, 200)
+element3.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+element3.PlaceholderText = "Enter text here..."
+element3.Text = ""
+element3.TextColor3 = Color3.fromRGB(255, 255, 255)
+element3.TextSize = 12
+element3.BorderSizePixel = 0
+element3.Parent = contentFolder
+
+local element3Corner = Instance.new("UICorner")
+element3Corner.CornerRadius = UDim.new(0, 6)
+element3Corner.Parent = element3
+
+local element4 = Instance.new("Frame")
+element4.Name = "DisplayPanel"
+element4.Size = UDim2.new(0, 380, 0, 120)
+element4.Position = UDim2.new(0.5, -190, 0, 260)
+element4.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+element4.BorderSizePixel = 0
+element4.Parent = contentFolder
+
+local element4Corner = Instance.new("UICorner")
+element4Corner.CornerRadius = UDim.new(0, 8)
+element4Corner.Parent = element4
+
+local scroll = Instance.new("ScrollingFrame")
+scroll.Size = UDim2.new(1, -10, 1, -10)
+scroll.Position = UDim2.new(0, 5, 0, 5)
+scroll.BackgroundTransparency = 1
+scroll.BorderSizePixel = 0
+scroll.ScrollBarThickness = 6
+scroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+scroll.Parent = element4
+
+local layout = Instance.new("UIListLayout")
+layout.SortOrder = Enum.SortOrder.LayoutOrder
+layout.Parent = scroll
+
+for i = 1, 10 do
+    local item = Instance.new("TextLabel")
+    item.Size = UDim2.new(1, 0, 0, 20)
+    item.BackgroundTransparency = 1
+    item.Text = "Item " .. i .. ": Access granted for " .. player.Name
+    item.TextColor3 = Color3.fromRGB(200, 200, 200)
+    item.TextSize = 10
+    item.LayoutOrder = i
+    item.Parent = scroll
+end
+
+local isDragging = false
+local dragStart = nil
+local startPos = nil
+
+local function updateDrag(input)
+    if isDragging then
+        local delta = input.Position - dragStart
+        mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end
+
+dragButton.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isDragging = true
+        dragStart = input.Position
+        startPos = mainFrame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                isDragging = false
+            end
+        end)
+    end
+end)
+
+dragButton.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        updateDrag(input)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        updateDrag(input)
+    end
+end)
+
+local hiddenState = false
+
+hideButton.MouseButton1Click:Connect(function()
+    hiddenState = not hiddenState
+    for _, child in ipairs(contentFolder:GetChildren()) do
+        if child:IsA("GuiObject") then
+            if hiddenState then
+                child.Visible = false
+            else
+                child.Visible = true
+            end
+        end
+    end
+    if hiddenState then
+        hideButton.Text = "Show UI"
+    else
+        hideButton.Text = "Hide UI"
+    end
+end)
+
+element2.MouseButton1Click:Connect(function()
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+    local tween = TweenService:Create(element2, tweenInfo, {BackgroundColor3 = Color3.fromRGB(100, 100, 200)})
+    tween:Play()
+    task.wait(0.3)
+    tween = TweenService:Create(element2, tweenInfo, {BackgroundColor3 = Color3.fromRGB(70, 70, 150)})
+    tween:Play()
+end)
+
+local physicsCheck = RunService.Heartbeat:Connect(function()
+    if not gui.Parent then
+        physicsCheck:Disconnect()
+    end
+end)

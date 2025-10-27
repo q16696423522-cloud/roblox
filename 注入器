@@ -1,0 +1,158 @@
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local BackgroundImage = Instance.new("ImageLabel")
+local Title = Instance.new("TextLabel")
+local ScriptBox = Instance.new("TextBox")
+local ExecuteButton = Instance.new("TextButton")
+local ClearButton = Instance.new("TextButton")
+local MinimizeButton = Instance.new("TextButton")
+local MiniWindow = Instance.new("Frame")
+local MiniTitle = Instance.new("TextLabel")
+local RestoreButton = Instance.new("TextButton")
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+MainFrame.BackgroundTransparency = 0.3
+MainFrame.BorderSizePixel = 2
+MainFrame.BorderColor3 = Color3.new(0.5, 0.5, 0.5)
+MainFrame.Position = UDim2.new(0.5, -320, 0.5, -240) -- 8x6比例(640x480)
+MainFrame.Size = UDim2.new(0, 640, 0, 480)
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+BackgroundImage.Name = "BackgroundImage"
+BackgroundImage.Parent = MainFrame
+BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
+BackgroundImage.Image = "rbxassetid://123456789"
+BackgroundImage.BackgroundTransparency = 1
+BackgroundImage.ZIndex = 0
+
+Title.Name = "Title"
+Title.Parent = MainFrame
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(0.1, 0, 0.05, 0)
+Title.Size = UDim2.new(0.8, 0, 0, 40)
+Title.Font = Enum.Font.GothamBlack
+Title.Text = "1.公益注入器--脚本版本"
+Title.TextColor3 = Color3.new(0, 1, 0)
+Title.TextSize = 24
+Title.TextWrapped = true
+Title.ZIndex = 2
+
+ScriptBox.Name = "ScriptBox"
+ScriptBox.Parent = MainFrame
+ScriptBox.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
+ScriptBox.BackgroundTransparency = 0.2
+ScriptBox.BorderSizePixel = 0
+ScriptBox.Position = UDim2.new(0.1, 0, 0.2, 0)
+ScriptBox.Size = UDim2.new(0.8, 0, 0.6, 0)
+ScriptBox.Font = Enum.Font.Code
+ScriptBox.MultiLine = true
+ScriptBox.PlaceholderText = "在此输入Lua脚本..."
+ScriptBox.Text = ""
+ScriptBox.TextColor3 = Color3.new(1, 1, 1)
+ScriptBox.TextSize = 14
+ScriptBox.TextWrapped = true
+ScriptBox.TextXAlignment = Enum.TextXAlignment.Left
+ScriptBox.TextYAlignment = Enum.TextYAlignment.Top
+ScriptBox.ZIndex = 2
+
+ExecuteButton.Name = "ExecuteButton"
+ExecuteButton.Parent = MainFrame
+ExecuteButton.BackgroundColor3 = Color3.new(0, 0.5, 0)
+ExecuteButton.BackgroundTransparency = 0.2
+ExecuteButton.BorderSizePixel = 0
+ExecuteButton.Position = UDim2.new(0.1, 0, 0.85, 0)
+ExecuteButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+ExecuteButton.Font = Enum.Font.GothamBold
+ExecuteButton.Text = "执行"
+ExecuteButton.TextColor3 = Color3.new(1, 1, 1)
+ExecuteButton.TextSize = 18
+ExecuteButton.ZIndex = 2
+
+ClearButton.Name = "ClearButton"
+ClearButton.Parent = MainFrame
+ClearButton.BackgroundColor3 = Color3.new(0.8, 0.2, 0.2)
+ClearButton.BackgroundTransparency = 0.2
+ClearButton.BorderSizePixel = 0
+ClearButton.Position = UDim2.new(0.4, 0, 0.85, 0)
+ClearButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+ClearButton.Font = Enum.Font.GothamBold
+ClearButton.Text = "清除"
+ClearButton.TextColor3 = Color3.new(1, 1, 1)
+ClearButton.TextSize = 18
+ClearButton.ZIndex = 2
+
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Parent = MainFrame
+MinimizeButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.8)
+MinimizeButton.BackgroundTransparency = 0.2
+MinimizeButton.BorderSizePixel = 0
+MinimizeButton.Position = UDim2.new(0.7, 0, 0.85, 0)
+MinimizeButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+MinimizeButton.Font = Enum.Font.GothamBold
+MinimizeButton.Text = "最小化"
+MinimizeButton.TextColor3 = Color3.new(1, 1, 1)
+MinimizeButton.TextSize = 18
+MinimizeButton.ZIndex = 2
+
+MiniWindow.Name = "MiniWindow"
+MiniWindow.Parent = ScreenGui
+MiniWindow.BackgroundColor3 = Color3.new(0, 0, 0)
+MiniWindow.BackgroundTransparency = 0.2
+MiniWindow.BorderSizePixel = 2
+MiniWindow.BorderColor3 = Color3.new(0.5, 0.5, 0.5)
+MiniWindow.Position = UDim2.new(0.9, -100, 0.1, 0)
+MiniWindow.Size = UDim2.new(0, 100, 0, 100) -- 正方形悬浮窗
+MiniWindow.Visible = false
+MiniWindow.Active = true
+MiniWindow.Draggable = true
+
+MiniTitle.Name = "MiniTitle"
+MiniTitle.Parent = MiniWindow
+MiniTitle.BackgroundTransparency = 1
+MiniTitle.Size = UDim2.new(1, 0, 0.5, 0)
+MiniTitle.Font = Enum.Font.GothamBlack
+MiniTitle.Text = "1."
+MiniTitle.TextColor3 = Color3.new(0, 1, 0)
+MiniTitle.TextSize = 24
+MiniTitle.TextWrapped = true
+
+RestoreButton.Name = "RestoreButton"
+RestoreButton.Parent = MiniWindow
+RestoreButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.8)
+RestoreButton.BackgroundTransparency = 0.2
+RestoreButton.BorderSizePixel = 0
+RestoreButton.Position = UDim2.new(0.1, 0, 0.6, 0)
+RestoreButton.Size = UDim2.new(0.8, 0, 0.3, 0)
+RestoreButton.Font = Enum.Font.GothamBold
+RestoreButton.Text = "恢复"
+RestoreButton.TextColor3 = Color3.new(1, 1, 1)
+RestoreButton.TextSize = 14
+
+ExecuteButton.MouseButton1Click:Connect(function()
+    local success, err = pcall(function()
+        loadstring(ScriptBox.Text)()
+    end)
+    if not success then
+        warn("脚本执行错误: "..err)
+    end
+end)
+
+ClearButton.MouseButton1Click:Connect(function()
+    ScriptBox.Text = ""
+end)
+
+MinimizeButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = false
+    MiniWindow.Visible = true
+end)
+
+RestoreButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
+    MiniWindow.Visible = false
+end)

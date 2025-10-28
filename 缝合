@@ -1,0 +1,640 @@
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "缝合",
+    Text = "反挂机开启",
+    Duration = 5, 
+})
+print("反挂机开启")
+		local vu = game:GetService("VirtualUser")
+		game:GetService("Players").LocalPlayer.Idled:connect(function()
+		   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		   wait(1)
+		   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+		end)
+local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/dUiCrXYP"))()
+local Window = OrionLib:MakeWindow({Name = "脚本中心", HidePremium = false, SaveConfig = true,IntroText = "欢迎使用脚本中心", ConfigFolder = "演戏等于稳定"})
+local about = Window:MakeTab({
+    Name = "公告",
+    Icon = "rbxassetid://93566402708060",
+    PremiumOnly = false
+})
+
+about:AddParagraph("公告", "永久公益,完全碾压市面上97%的缝合脚本")
+about:AddParagraph("更新", "河北唐县")
+about:AddParagraph("注意", "演戏等于稳定")
+about:AddParagraph("您的用户名:"," "..game.Players.LocalPlayer.Name.."")
+about:AddParagraph("您的注入器:"," "..identifyexecutor().."")
+about:AddParagraph("您当前服务器的ID"," "..game.GameId.."")")
+about:AddParagraph("创作者:匿名")
+
+local Tab = Window:MakeTab({
+	Name = "其他通用脚本",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "皮脚本",
+	Callback = function()
+    getgenv().XiaoPi="皮脚本QQ群1002100032" loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "XA HUB",	
+    Callback = function()
+loadstring(game:HttpGet("https://raw.gitcode.com/Xingtaiduan/Scripts/raw/main/Loader.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "XK HUB",
+	Callback = function()
+loadstring(game:HttpGet(('https://github.com/DevSloPo/DVES/raw/main/XK%20Hub')))()
+  end
+})
+
+Tab:AddButton({
+    Name = "XK脚本",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BINjiaobzx6/BINjiao/main/XK.lua"))()
+   end
+})
+
+Tab:AddButton({
+    Name = "Rb脚本",	
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yungengxin/roblox/refs/heads/main/Rb-Hub"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "不知名的缝合脚本(卡密:666-ethan-yyds)",
+	Callback = function()
+loadstring(utf8.char((function() return table.unpack({
+108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,
+104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,
+106,103,121,117,103,117,47,84,101,109,112,108,97,116,101,45,83,99,114,105,112,116,45,72,117,98,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,75,101,121,95,115,121,115,116,101,109,
+34,41,41,40,41
+}) end)()))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "自瞄",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "阿尔宙斯自瞄",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/Arceus%20Aimbot.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "神青高级自瞄",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gycgchgyfytdttr/QQ-9-2-8-9-50173/refs/heads/main/cure.lua"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "动作脚本",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "动作(R15)(1)",
+    Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-AFEM-14048"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "动作(R15)(2)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FengYu-3/general/refs/heads/main/FE_R15.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "动作(R15)(3)(推荐)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Gazer-Ha/Free-emote/refs/heads/main/Delta%20mad%20stuffs"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "前后空翻",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E5%89%8D%E5%90%8E%E7%A9%BA%E7%BF%BB.txt"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "通用",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "依然NB飞行V9178",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/Roblox-666/refs/heads/main/%E4%BE%9D%E7%84%B6%E9%A3%9E%E8%A1%8C%E8%84%9A%E6%9C%AC"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "无限跳",
+	Callback = function()
+loadstring(game:HttpGet("https://pastebin.com/raw/V5PQy3y0", true))()
+  end
+})
+
+ Tab:AddButton({
+    Name = "踏空行走",
+    Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float'))()
+   end
+ })
+ 
+Tab:AddButton({
+    Name = "创建私人服务器",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/342423114514/342423/refs/heads/main/9191"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "一键创建私人服务器",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/yoursvexyyy/VEX-OP/refs/heads/main/free%20server%20finder"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "Dex汉化",
+	Callback = function()
+loadstring(game:HttpGet("https://gitee.com/cmbhbh/cmbh/raw/master/Bex.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "控制NPC",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/fe-source/refs/heads/main/NPC/source/main.Luau"))()
+--sub @Im_patrick right now!
+  end
+})
+
+Tab:AddButton({
+	Name = "AC6",
+	Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Ac6-Music-Vulnerability-25536"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "娱乐脚本",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "零件破坏者V2(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/-/main/零件破坏者v2"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "悬浮(反重力)(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/%E5%85%A8%E5%B1%80%E7%89%A9%E4%BD%93%E6%BC%82%E6%B5%AE%E6%9C%80%E7%BB%88%E4%BC%98%E5%8C%96%E7%89%88"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "控制物体(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/%E5%8D%95%E4%B8%80%E7%89%A9%E4%BD%93%E9%A3%9E%E8%A1%8C%E8%BD%BD%E8%87%AA%E5%B7%B1%E6%9C%80%E7%BB%88%E4%BC%98%E5%8C%96%E7%89%88"))()   
+  end
+})
+
+Tab:AddButton({
+	Name = "球壮环绕脚本(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/Soul-Ring/main/%E5%8F%AC%E5%94%A4%E9%AD%82%E7%8E%AF"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "反重力(自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/Roblox-/refs/heads/main/%E8%84%9A%E6%9C%AC"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "控制物体最终优化版(单一)(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/单一物体飞行载自己最终优化版"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "控制物体另一个版本(单一)(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/%E5%8D%95%E4%B8%80%E7%89%A9%E4%BD%93%E9%A3%9E%E8%A1%8C%E8%BD%BD%E8%87%AA%E5%B7%B1%E6%9C%80%E7%BB%88%E4%BC%98%E5%8C%96%E7%89%88", true))()
+  end
+})
+
+Tab:AddButton({
+	Name = "悬服最终优化版(反重力)(适合自然灾害)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/6669178/main/全局物体漂浮最终优化版"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "零件环绕倾斜",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/Soul-Ring/main/零件环绕倾斜"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "无敌少侠(r15)",
+	Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "无敌少侠(r6)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%97%A0%E6%95%8C%E5%B0%91%E4%BE%A0%E9%A3%9E%E8%A1%8Cr6.txt"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "无头加断腿(R6)",
+	Callback = function()
+loadstring(game:HttpGet("https://rawscripts.net/raw/FIXED-Brainrot-Jumping-korblox-R6-a-headless-54182"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "动作(R15)",
+	Callback = function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-937.5891723632812, 93.09876251220703, 2063.031982421875)
+  end
+})
+
+Tab:AddButton({
+	Name = "传送菜单",
+	Callback = function()
+loadstring(game:HttpGet("\x68\x74\x74\x70\x73\x3a\x2f\x2f\x72\x61\x77\x2e\x67\x69\x74\x68\x75\x62\x75\x73\x65\x72\x63\x6f\x6e\x74\x65\x6e\x74\x2e\x63\x6f\x6d\x2f\x63\x79\x74\x6a\x37\x37\x37\x69\x2f\x44\x65\x6c\x69\x76\x65\x72\x2d\x74\x68\x72\x6f\x75\x67\x68\x2d\x74\x68\x65\x2d\x77\x61\x6c\x6c\x2d\x70\x65\x72\x73\x70\x65\x63\x74\x69\x76\x65\x2f\x6d\x61\x69\x6e\x2f\xe5\xa4\xa9\xe4\xb8\x8b\xe5\xb8\x83\xe6\xad\xa6"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "黑洞V6(适合自然灾害)",
+	Callback = function()
+	loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Super-ring-Parts-V6-28581"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "自然灾害",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "防止摔落伤害",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cytj777i/Fall-injury/main/防止摔落伤害"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "指南针崩服(必须要有指南针才能使用)(别人有的话可以在Dex给他复制到你那里)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/main/0SwordWarriors"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "这个暂时没想好，不要点",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/KidichiHB/Kidachi/main/Scripts/SwordWarrior", true))()    
+  end
+})
+
+
+Tab:AddButton({
+    Name = "这个暂时没想好，不要点",
+    Callback = function()
+loadstring(game:HttpGet("https://scriptblox.com/raw/ToiletTower!Sword-Warriors!-Instant-Sword-Swing-7653"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "在森林中存活99夜",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "99夜1",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/Roblox-/refs/heads/main/99%E5%A4%9C(Roblox_%E4%BE%9D%E7%84%B6%E6%B1%89%E5%8C%96)"))()
+	end
+})
+
+Tab:AddButton({
+    Name = "99夜DARK中心(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/DARK.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "99夜虚空脚本(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/99%E5%A4%9C%E8%99%9A%E7%A9%BA.txt"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "99夜超强脚本",
+    Callback = function()
+TX = "TX退休脚本"
+Scripts = "森林中的99夜"
+QUN = "Q群:160369111"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JsYb666/Item/refs/heads/main/99-Nights-TX-XIAN-MIAN______-_-_--_-_-_-_--_-_-_-_--_-_-_-_-_--_-_-_-__------_-_-_-_.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "99夜Cps natural脚本(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/Roblox-666/refs/heads/main/%E4%BE%9D%E7%84%B6%E9%A3%9E%E8%A1%8C%E8%84%9A%E6%9C%AC"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "死铁轨",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+local Section = Tab:AddSection({
+	Name = "脚本"
+})
+
+Tab:AddButton({
+	Name = "死铁轨脚本(中文)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iopjklbnmsss/SansHubScript/refs/heads/main/SansHub"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "死铁轨脚本1",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
+  end
+})
+Tab:AddButton({
+    Name = "死铁轨脚本2",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Unknownlodfc/Zephyr/refs/heads/main/DeadRails/Main"))()
+  end
+})
+
+local Section = Tab:AddSection({
+	Name = "功能"
+})
+
+Tab:AddButton({
+    Name = "强力挥击(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E6%AD%BB%E9%93%81%E8%BD%A8v4.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "近战增强脚本(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E8%BF%91%E6%88%98.lua"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "偷走脑红",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "偷走脑红脚本1",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DoliScriptz/MakalHub/refs/heads/main/loader.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "偷走脑红脚本2",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/342423114514/-/refs/heads/main/%E6%9C%9D%E9%9C%9E%E6%B1%89%E8%84%91%E7%BA%A2%E8%84%9A%E6%9C%AC.txt"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "DOORS",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "DOORS1(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/VelocityX.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "DOORS2(Kenny汉化)",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/DOORS.lua"))()
+  end
+})
+
+Tab:AddButton({
+    Name = "DOORS3",
+    Callback = function()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/mstudio45/poopdoors_edited/main/poopdoors_edited.lua"),true))() 
+  end
+})
+
+Tab:AddButton({
+    Name = "DOORS4",
+    Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/refs/heads/main/Protected_2809220311826785.lua.txt"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "河北唐县",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "脚本"
+})
+
+Tab:AddButton({
+	Name = "皮-河北唐县",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/Pi-script-Hebeitangxian.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "叶脚本河北唐县",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/YE%20SCRIPT-Tang%20County%2C%20Hebei.lua"))()
+  end
+})
+
+local Section = Tab:AddSection({
+	Name = "功能"
+})
+
+Tab:AddButton({
+	Name = "刷钱1",
+	Callback = function()
+TANGXIAN = "卡车刷钱限时免费版"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaoyi-boop/-/refs/heads/main/tangxianxianmian.lua",true))()
+  end
+})
+
+Tab:AddButton({
+	Name = "刷钱2",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaoyi-boop/-/refs/heads/main/YItangxian.lua",true))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "最强战场",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "最强战场op级脚本1",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Cyborg883/GoldenPakiFusion/refs/heads/main/Script"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "种植花园",
+	Icon = "rbxassetid://93566402708060",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "推荐"
+})
+
+Tab:AddButton({
+	Name = "种植花园1",
+	Callback = function()
+loadstring(game:HttpGet("https://lunor.dev/loader"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园2",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NoLag-id/No-Lag-HUB/refs/heads/main/Loader/Main.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园3",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园4",
+	Callback = function()
+loadstring(game:HttpGet('https://zaphub.xyz/Exec'))()
+  end
+})
+
+Tab:AddButton({
+	Name = "速度中心X[种植花园)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园(TX)",
+	Callback = function()
+loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\54\52\68\99\116\76\77\53\47\114\97\119"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "MozilHub-V.5(油管搬运)(种植花园)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/GlazeScripts/MozilHub-V.5/refs/heads/main/GlazeHub.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园(油管搬运)",
+	Callback = function()
+loadstring(game: HttpGet("https://raw.githubusercontent.com/Kenniel123/Grow-a-garden/refs/heads/main/Grow%20A%20Garden"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园(要解卡)",
+	Callback = function()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/d7be76c234d46ce6770101fded39760c.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园(油管搬运)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ThundarZ/Welcome/main/Main/GaG/Main.lua"))()
+  end
+})
+
+Tab:AddButton({
+	Name = "种植花园(油管搬运)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+  end
+})
+
+Tab:AddButton({
+	Name = "乌托邦种植花园",
+	Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/eUAzqoCL/raw"))()
+  end
+})

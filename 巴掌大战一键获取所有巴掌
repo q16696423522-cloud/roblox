@@ -1,0 +1,9 @@
+for _,v in ipairs(workspace.Lobby.GloveStands:GetDescendants()) do
+    if v:FindFirstChild("TextLabel") and v.TextLabel.Text:match("^Own") then
+        for _,v_ in ipairs(game:GetService("ReplicatedStorage"):WaitForChild("_NETWORK"):GetChildren()) do
+            if v_:IsA("RemoteEvent") and string.match(v_.Name,"^%b{}$") and string.find(v_.Name,"%-") then
+                v_:FireServer(v.Parent.Parent.Name)
+            end
+        end
+    end
+end

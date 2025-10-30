@@ -1,0 +1,52 @@
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+
+local noclip = false
+local buttonSize = UDim2.new(0, 40, 0, 40)
+local buttonPosition = UDim2.new(0, 10, 0, 10)
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NoclipGUI"
+ScreenGui.Parent = CoreGui
+
+local ToggleButton = Instance.new("TextButton")
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = ScreenGui
+ToggleButton.Size = buttonSize
+ToggleButton.Position = buttonPosition
+ToggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.Text = "穿墙"
+ToggleButton.TextScaled = true
+ToggleButton.BorderSizePixel = 0
+ToggleButton.ZIndex = 10
+
+local function toggleNoclip()
+    noclip = not noclip
+    if noclip then
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+        ToggleButton.Text = "穿墙开"
+    else
+        ToggleButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        ToggleButton.Text = "穿墙关"
+    end
+end
+
+ToggleButton.MouseButton1Click:Connect(toggleNoclip)
+
+local function noclipLoop()
+    if noclip and Player.Character then
+        local humanoid = Player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            for _, part in pairs(Player.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = false
+                end
+            end
+        end
+    end
+end
+
+game:GetService("RunService").Stepped:Connect(noclipLoop)

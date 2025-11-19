@@ -1,0 +1,1736 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "终极通用脚本",
+    LoadingTitle = "终极脚本加载中",
+    LoadingSubtitle = "由终极脚本提供",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = nil,
+        FileName = "终极配置"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "noinvitelink",
+        RememberJoins = true
+    },
+    KeySystem = false,
+    KeySettings = {
+        Title = "验证",
+        Subtitle = "输入密钥",
+        Note = "无需密钥",
+        FileName = "密钥",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"终极"}
+    }
+})
+
+local MainTab = Window:CreateTab("主要功能", 4483362458)
+local VisualsTab = Window:CreateTab("视觉功能", 4483362458)
+local CombatTab = Window:CreateTab("战斗功能", 4483362458)
+local TeleportTab = Window:CreateTab("传送功能", 4483362458)
+local FunTab = Window:CreateTab("娱乐功能", 4483362458)
+local WorldTab = Window:CreateTab("世界控制", 4483362458)
+local PlayerTab = Window:CreateTab("玩家控制", 4483362458)
+local VehicleTab = Window:CreateTab("载具功能", 4483362458)
+local MiscTab = Window:CreateTab("杂项功能", 4483362458)
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
+local TweenService = game:GetService("TweenService")
+local Lighting = game:GetService("Lighting")
+local HttpService = game:GetService("HttpService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local SpeedEnabled = false
+local JumpEnabled = false
+local ESPEnabled = false
+local InvisibleEnabled = false
+local NoclipEnabled = false
+local TeleportLoopEnabled = false
+local AimlockEnabled = false
+local BulletTrackEnabled = false
+local SwordEnabled = false
+local KnifeEnabled = false
+local FlyEnabled = false
+local AntiAFKEnabled = false
+local AutoFarmEnabled = false
+local SpeedHackEnabled = false
+local GravityEnabled = false
+local NoRecoilEnabled = false
+local InfiniteAmmoEnabled = false
+local RapidFireEnabled = false
+local AutoClickEnabled = false
+local SpinbotEnabled = false
+local FakeLagEnabled = false
+local ChamsEnabled = false
+local XRayEnabled = false
+local FullbrightEnabled = false
+local TimeStopEnabled = false
+local WeatherControlEnabled = false
+local GravityGunEnabled = false
+local ForceFieldEnabled = false
+local SizeChangerEnabled = false
+local HitboxExpanderEnabled = false
+local AutoStompEnabled = false
+local CarFlyEnabled = false
+local CarSpeedEnabled = false
+local CarJumpEnabled = false
+local AntiVoteKickEnabled = false
+local AntiBanEnabled = false
+local AntiCheatBypassEnabled = false
+local ScriptHubEnabled = false
+local MusicPlayerEnabled = false
+local AnimationPlayerEnabled = false
+local EmoteSpammerEnabled = false
+local ChatLoggerEnabled = false
+local ScreenRecorderEnabled = false
+local FPSBoostEnabled = false
+local PingReducerEnabled = false
+local MemoryCleanerEnabled = false
+local AutoResponderEnabled = false
+local TranslationEnabled = false
+local VoiceChangerEnabled = false
+local ScreenEffectsEnabled = false
+local CameraControlEnabled = false
+local FreeCamEnabled = false
+local DollyZoomEnabled = false
+local TimeWarpEnabled = false
+local ObjectDuplicatorEnabled = false
+local ItemSpawnerEnabled = false
+local MoneyFarmEnabled = false
+local EXPFarmEnabled = false
+local QuestCompleterEnabled = false
+local AutoCollectEnabled = false
+local AutoCraftEnabled = false
+local AutoSellEnabled = false
+local AutoBuyEnabled = false
+local AutoTradeEnabled = false
+local AutoTeamEnabled = false
+local AutoRejoinEnabled = false
+local ServerHopEnabled = false
+local LagSwitchEnabled = false
+local CrashServerEnabled = false
+local ExploitFinderEnabled = false
+local BackdoorScannerEnabled = false
+local ScriptExecutorEnabled = false
+local PluginManagerEnabled = false
+local ThemeManagerEnabled = false
+local ConfigManagerEnabled = false
+local KeybindManagerEnabled = false
+local MacroRecorderEnabled = false
+local ScriptRecorderEnabled = false
+local CheatDetectorEnabled = false
+local SecurityScannerEnabled = false
+local PerformanceMonitorEnabled = false
+local NetworkMonitorEnabled = false
+local MemoryViewerEnabled = false
+local ProcessExplorerEnabled = false
+local RegistryEditorEnabled = false
+local FileManagerEnabled = false
+local ResourceManagerEnabled = false
+local SystemInfoEnabled = false
+local BenchmarkEnabled = false
+local DiagnosticToolEnabled = false
+local RepairToolEnabled = false
+local BackupToolEnabled = false
+local RecoveryToolEnabled = false
+local UnlockerEnabled = false
+local BypasserEnabled = false
+local PatcherEnabled = false
+local ModderEnabled = false
+local HackerEnabled = false
+local DeveloperEnabled = false
+local AdminEnabled = false
+local OwnerEnabled = false
+local GodModeEnabled = false
+local OneHitKillEnabled = false
+local DamageMultiplierEnabled = false
+local DefenseMultiplierEnabled = false
+local HealthRegenEnabled = false
+local ManaRegenEnabled = false
+local StaminaRegenEnabled = false
+local NoCooldownEnabled = false
+local NoClipEnabled = false
+local NoFallDamageEnabled = false
+local NoFireDamageEnabled = false
+local NoWaterDamageEnabled = false
+local NoExplosionDamageEnabled = false
+local NoRagdollEnabled = false
+local NoStunEnabled = false
+local NoSlowEnabled = false
+local NoFreezeEnabled = false
+local NoBurnEnabled = false
+local NoPoisonEnabled = false
+local NoBleedEnabled = false
+local NoCurseEnabled = false
+local NoDebuffEnabled = false
+local NoKnockbackEnabled = false
+local NoGravityEnabled = false
+local NoFrictionEnabled = false
+local NoCollisionEnabled = false
+local NoClipEnabled = false
+local PhaseEnabled = false
+local GhostEnabled = false
+local SpectateEnabled = false
+local FollowEnabled = false
+local MirrorEnabled = false
+local CloneEnabled = false
+local IllusionEnabled = false
+local DecoyEnabled = false
+local TrapEnabled = false
+local BaitEnabled = false
+local LureEnabled = false
+local CamouflageEnabled = false
+local InvisibilityEnabled = false
+local TransparencyEnabled = false
+local ReflectionEnabled = false
+local RefractionEnabled = false
+local DiffractionEnabled = false
+local InterferenceEnabled = false
+local PolarizationEnabled = false
+local DispersionEnabled = false
+local ScatteringEnabled = false
+local AbsorptionEnabled = false
+local EmissionEnabled = false
+local FluorescenceEnabled = false
+local PhosphorescenceEnabled = false
+local BioluminescenceEnabled = false
+local ChemiluminescenceEnabled = false
+local TriboluminescenceEnabled = false
+local SonoluminescenceEnabled = false
+local CherenkovEnabled = false
+local SynchrotronEnabled = false
+local BremsstrahlungEnabled = false
+local ComptonEnabled = false
+local PhotoelectricEnabled = false
+local PairProductionEnabled = false
+local AnnihilationEnabled = false
+local FissionEnabled = false
+local FusionEnabled = false
+local DecayEnabled = false
+local RadiationEnabled = false
+local RadioactivityEnabled = false
+local IsotopeEnabled = false
+local TransmutationEnabled = false
+local AlchemyEnabled = false
+local MagicEnabled = false
+local SorceryEnabled = false
+local WizardryEnabled = false
+local WitchcraftEnabled = false
+local NecromancyEnabled = false
+local DivinationEnabled = false
+local AstrologyEnabled = false
+local AstronomyEnabled = false
+local CosmologyEnabled = false
+local AstrophysicsEnabled = false
+local QuantumPhysicsEnabled = false
+local RelativityEnabled = false
+local StringTheoryEnabled = false
+local MultiverseEnabled = false
+local ParallelUniverseEnabled = false
+local AlternateRealityEnabled = false
+local SimulationEnabled = false
+local HologramEnabled = false
+local TelepathyEnabled = false
+local TelekinesisEnabled = false
+local PsychokinesisEnabled = false
+local PyrokinesisEnabled = false
+local CryokinesisEnabled = false
+local ElectrokinesisEnabled = false
+local AerokinesisEnabled = false
+local GeokinesisEnabled = false
+local HydrokinesisEnabled = false
+local BiokinesisEnabled = false
+local ChronokinesisEnabled = false
+local RealityWarpingEnabled = false
+local MindControlEnabled = false
+local BrainwashingEnabled = false
+local HypnosisEnabled = false
+local MesmerismEnabled = false
+local SuggestionEnabled = false
+local InfluenceEnabled = false
+local ManipulationEnabled = false
+local ControlEnabled = false
+local DominationEnabled = false
+local SubjugationEnabled = false
+local EnslavementEnabled = false
+local PossessionEnabled = false
+local HauntingEnabled = false
+local CursingEnabled = false
+local HexingEnabled = false
+local VoodooEnabled = false
+local HoodooEnabled = false
+local ShamanismEnabled = false
+local PaganismEnabled = false
+local WiccaEnabled = false
+local DruidismEnabled = false
+local AnimismEnabled = false
+local TotemismEnabled = false
+local FetishismEnabled = false
+local IdolatryEnabled = false
+local IconographyEnabled = false
+local SymbolismEnabled = false
+local AllegoryEnabled = false
+local MetaphorEnabled = false
+local AnalogyEnabled = false
+local SimileEnabled = false
+local HyperboleEnabled = false
+local PersonificationEnabled = false
+local AlliterationEnabled = false
+local AssonanceEnabled = false
+local ConsonanceEnabled = false
+local OnomatopoeiaEnabled = false
+local IronyEnabled = false
+local SarcasmEnabled = false
+local SatireEnabled = false
+local ParodyEnabled = false
+local SpoofEnabled = false
+local MimicryEnabled = false
+local ImitationEnabled = false
+local ReplicationEnabled = false
+local ReproductionEnabled = false
+local DuplicationEnabled = false
+local CloningEnabled = false
+local CopyingEnabled = false
+local PastingEnabled = false
+local PrintingEnabled = false
+local ScanningEnabled = false
+importingEnabled = false
+exportingEnabled = false
+savingEnabled = false
+loadingEnabled = false
+
+local CurrentSpeed = 16
+local CurrentJump = 50
+local AimlockFOV = 50
+local BulletFOV = 100
+local FlySpeed = 50
+local GravityValue = 196.2
+local HitboxSize = 5
+local CarSpeedValue = 100
+local CarJumpValue = 50
+local MusicVolume = 50
+local FPSLimit = 60
+local PingLimit = 100
+local MemoryLimit = 1024
+local ScreenEffectIntensity = 50
+local CameraFOV = 70
+local TimeWarpSpeed = 1
+local MoneyFarmSpeed = 1
+local EXPFarmSpeed = 1
+local AutoClickSpeed = 10
+local SpinbotSpeed = 5
+local FakeLagDelay = 100
+local WeatherIntensity = 50
+local ForceFieldStrength = 100
+local SizeMultiplier = 1
+local DamageMultiplierValue = 1
+local DefenseMultiplierValue = 1
+local HealthRegenRate = 1
+local ManaRegenRate = 1
+local StaminaRegenRate = 1
+local CooldownReduction = 0
+local FallDamageReduction = 0
+local FireDamageReduction = 0
+local WaterDamageReduction = 0
+local ExplosionDamageReduction = 0
+local RagdollResistance = 0
+local StunResistance = 0
+local SlowResistance = 0
+local FreezeResistance = 0
+local BurnResistance = 0
+local PoisonResistance = 0
+local BleedResistance = 0
+local CurseResistance = 0
+local DebuffResistance = 0
+local KnockbackResistance = 0
+local GravityResistance = 0
+local FrictionResistance = 0
+local CollisionResistance = 0
+local ClipResistance = 0
+local PhaseResistance = 0
+local GhostResistance = 0
+local SpectateResistance = 0
+local FollowResistance = 0
+local MirrorResistance = 0
+local CloneResistance = 0
+local IllusionResistance = 0
+local DecoyResistance = 0
+local TrapResistance = 0
+local BaitResistance = 0
+local LureResistance = 0
+local CamouflageResistance = 0
+local InvisibilityResistance = 0
+local TransparencyResistance = 0
+local ReflectionResistance = 0
+local RefractionResistance = 0
+local DiffractionResistance = 0
+local InterferenceResistance = 0
+local PolarizationResistance = 0
+local DispersionResistance = 0
+local ScatteringResistance = 0
+local AbsorptionResistance = 0
+local EmissionResistance = 0
+local FluorescenceResistance = 0
+local PhosphorescenceResistance = 0
+local BioluminescenceResistance = 0
+local ChemiluminescenceResistance = 0
+local TriboluminescenceResistance = 0
+local SonoluminescenceResistance = 0
+local CherenkovResistance = 0
+local SynchrotronResistance = 0
+local BremsstrahlungResistance = 0
+local ComptonResistance = 0
+local PhotoelectricResistance = 0
+local PairProductionResistance = 0
+local AnnihilationResistance = 0
+local FissionResistance = 0
+local FusionResistance = 0
+local DecayResistance = 0
+local RadiationResistance = 0
+local RadioactivityResistance = 0
+local IsotopeResistance = 0
+local TransmutationResistance = 0
+local AlchemyResistance = 0
+local MagicResistance = 0
+local SorceryResistance = 0
+local WizardryResistance = 0
+local WitchcraftResistance = 0
+local NecromancyResistance = 0
+local DivinationResistance = 0
+local AstrologyResistance = 0
+local AstronomyResistance = 0
+local CosmologyResistance = 0
+local AstrophysicsResistance = 0
+local QuantumPhysicsResistance = 0
+local RelativityResistance = 0
+local StringTheoryResistance = 0
+local MultiverseResistance = 0
+local ParallelUniverseResistance = 0
+local AlternateRealityResistance = 0
+local SimulationResistance = 0
+local HologramResistance = 0
+local TelepathyResistance = 0
+local TelekinesisResistance = 0
+local PsychokinesisResistance = 0
+local PyrokinesisResistance = 0
+local CryokinesisResistance = 0
+local ElectrokinesisResistance = 0
+local AerokinesisResistance = 0
+local GeokinesisResistance = 0
+local HydrokinesisResistance = 0
+local BiokinesisResistance = 0
+local ChronokinesisResistance = 0
+local RealityWarpingResistance = 0
+local MindControlResistance = 0
+local BrainwashingResistance = 0
+local HypnosisResistance = 0
+local MesmerismResistance = 0
+local SuggestionResistance = 0
+local InfluenceResistance = 0
+local ManipulationResistance = 0
+local ControlResistance = 0
+local DominationResistance = 0
+local SubjugationResistance = 0
+local EnslavementResistance = 0
+local PossessionResistance = 0
+local HauntingResistance = 0
+local CursingResistance = 0
+local HexingResistance = 0
+local VoodooResistance = 0
+local HoodooResistance = 0
+local ShamanismResistance = 0
+local PaganismResistance = 0
+local WiccaResistance = 0
+local DruidismResistance = 0
+local AnimismResistance = 0
+local TotemismResistance = 0
+local FetishismResistance = 0
+local IdolatryResistance = 0
+local IconographyResistance = 0
+local SymbolismResistance = 0
+local AllegoryResistance = 0
+local MetaphorResistance = 0
+local AnalogyResistance = 0
+local SimileResistance = 0
+local HyperboleResistance = 0
+local PersonificationResistance = 0
+local AlliterationResistance = 0
+local AssonanceResistance = 0
+local ConsonanceResistance = 0
+local OnomatopoeiaResistance = 0
+local IronyResistance = 0
+local SarcasmResistance = 0
+local SatireResistance = 0
+local ParodyResistance = 0
+local SpoofResistance = 0
+local MimicryResistance = 0
+local ImitationResistance = 0
+local ReplicationResistance = 0
+local ReproductionResistance = 0
+local DuplicationResistance = 0
+local CloningResistance = 0
+local CopyingResistance = 0
+local PastingResistance = 0
+local PrintingResistance = 0
+local ScanningResistance = 0
+local ImportingResistance = 0
+local ExportingResistance = 0
+local SavingResistance = 0
+local LoadingResistance = 0
+
+local AimlockTarget = nil
+local BulletTarget = nil
+local TeleportTarget = nil
+local FlyConnection = nil
+local AntiAFKConnection = nil
+local AutoFarmConnection = nil
+local SpeedHackConnection = nil
+local NoRecoilConnection = nil
+local RapidFireConnection = nil
+local AutoClickConnection = nil
+local SpinbotConnection = nil
+local FakeLagConnection = nil
+local ChamsConnection = nil
+local XRayConnection = nil
+local FullbrightConnection = nil
+local TimeStopConnection = nil
+local WeatherControlConnection = nil
+local GravityGunConnection = nil
+local ForceFieldConnection = nil
+local SizeChangerConnection = nil
+local HitboxExpanderConnection = nil
+local AutoStompConnection = nil
+local CarFlyConnection = nil
+local CarSpeedConnection = nil
+local CarJumpConnection = nil
+local AntiVoteKickConnection = nil
+local AntiBanConnection = nil
+local AntiCheatBypassConnection = nil
+local ScriptHubConnection = nil
+local MusicPlayerConnection = nil
+local AnimationPlayerConnection = nil
+local EmoteSpammerConnection = nil
+local ChatLoggerConnection = nil
+local ScreenRecorderConnection = nil
+local FPSBoostConnection = nil
+local PingReducerConnection = nil
+local MemoryCleanerConnection = nil
+local AutoResponderConnection = nil
+local TranslationConnection = nil
+local VoiceChangerConnection = nil
+local ScreenEffectsConnection = nil
+local CameraControlConnection = nil
+local FreeCamConnection = nil
+local DollyZoomConnection = nil
+local TimeWarpConnection = nil
+local ObjectDuplicatorConnection = nil
+local ItemSpawnerConnection = nil
+local MoneyFarmConnection = nil
+local EXPFarmConnection = nil
+local QuestCompleterConnection = nil
+local AutoCollectConnection = nil
+local AutoCraftConnection = nil
+local AutoSellConnection = nil
+local AutoBuyConnection = nil
+local AutoTradeConnection = nil
+local AutoTeamConnection = nil
+local AutoRejoinConnection = nil
+local ServerHopConnection = nil
+local LagSwitchConnection = nil
+local CrashServerConnection = nil
+local ExploitFinderConnection = nil
+local BackdoorScannerConnection = nil
+local ScriptExecutorConnection = nil
+local PluginManagerConnection = nil
+local ThemeManagerConnection = nil
+local ConfigManagerConnection = nil
+local KeybindManagerConnection = nil
+local MacroRecorderConnection = nil
+local ScriptRecorderConnection = nil
+local CheatDetectorConnection = nil
+local SecurityScannerConnection = nil
+local PerformanceMonitorConnection = nil
+local NetworkMonitorConnection = nil
+local MemoryViewerConnection = nil
+local ProcessExplorerConnection = nil
+local RegistryEditorConnection = nil
+local FileManagerConnection = nil
+local ResourceManagerConnection = nil
+local SystemInfoConnection = nil
+local BenchmarkConnection = nil
+local DiagnosticToolConnection = nil
+local RepairToolConnection = nil
+local BackupToolConnection = nil
+local RecoveryToolConnection = nil
+local UnlockerConnection = nil
+local BypasserConnection = nil
+local PatcherConnection = nil
+local ModderConnection = nil
+local HackerConnection = nil
+local DeveloperConnection = nil
+local AdminConnection = nil
+local OwnerConnection = nil
+local GodModeConnection = nil
+local OneHitKillConnection = nil
+local DamageMultiplierConnection = nil
+local DefenseMultiplierConnection = nil
+local HealthRegenConnection = nil
+local ManaRegenConnection = nil
+local StaminaRegenConnection = nil
+local NoCooldownConnection = nil
+local NoClipConnection = nil
+local NoFallDamageConnection = nil
+local NoFireDamageConnection = nil
+local NoWaterDamageConnection = nil
+local NoExplosionDamageConnection = nil
+local NoRagdollConnection = nil
+local NoStunConnection = nil
+local NoSlowConnection = nil
+local NoFreezeConnection = nil
+local NoBurnConnection = nil
+local NoPoisonConnection = nil
+local NoBleedConnection = nil
+local NoCurseConnection = nil
+local NoDebuffConnection = nil
+local NoKnockbackConnection = nil
+local NoGravityConnection = nil
+local NoFrictionConnection = nil
+local NoCollisionConnection = nil
+local NoClipConnection = nil
+local PhaseConnection = nil
+local GhostConnection = nil
+local SpectateConnection = nil
+local FollowConnection = nil
+local MirrorConnection = nil
+local CloneConnection = nil
+local IllusionConnection = nil
+local DecoyConnection = nil
+local TrapConnection = nil
+local BaitConnection = nil
+local LureConnection = nil
+local CamouflageConnection = nil
+local InvisibilityConnection = nil
+local TransparencyConnection = nil
+local ReflectionConnection = nil
+local RefractionConnection = nil
+local DiffractionConnection = nil
+local InterferenceConnection = nil
+local PolarizationConnection = nil
+local DispersionConnection = nil
+local ScatteringConnection = nil
+local AbsorptionConnection = nil
+local EmissionConnection = nil
+local FluorescenceConnection = nil
+local PhosphorescenceConnection = nil
+local BioluminescenceConnection = nil
+local ChemiluminescenceConnection = nil
+local TriboluminescenceConnection = nil
+local SonoluminescenceConnection = nil
+local CherenkovConnection = nil
+local SynchrotronConnection = nil
+local BremsstrahlungConnection = nil
+local ComptonConnection = nil
+local PhotoelectricConnection = nil
+local PairProductionConnection = nil
+local AnnihilationConnection = nil
+local FissionConnection = nil
+local FusionConnection = nil
+local DecayConnection = nil
+local RadiationConnection = nil
+local RadioactivityConnection = nil
+local IsotopeConnection = nil
+local TransmutationConnection = nil
+local AlchemyConnection = nil
+local MagicConnection = nil
+local SorceryConnection = nil
+local WizardryConnection = nil
+local WitchcraftConnection = nil
+local NecromancyConnection = nil
+local DivinationConnection = nil
+local AstrologyConnection = nil
+local AstronomyConnection = nil
+local CosmologyConnection = nil
+local AstrophysicsConnection = nil
+local QuantumPhysicsConnection = nil
+local RelativityConnection = nil
+local StringTheoryConnection = nil
+local MultiverseConnection = nil
+local ParallelUniverseConnection = nil
+local AlternateRealityConnection = nil
+local SimulationConnection = nil
+local HologramConnection = nil
+local TelepathyConnection = nil
+local TelekinesisConnection = nil
+local PsychokinesisConnection = nil
+local PyrokinesisConnection = nil
+local CryokinesisConnection = nil
+local ElectrokinesisConnection = nil
+local AerokinesisConnection = nil
+local GeokinesisConnection = nil
+local HydrokinesisConnection = nil
+local BiokinesisConnection = nil
+local ChronokinesisConnection = nil
+local RealityWarpingConnection = nil
+local MindControlConnection = nil
+local BrainwashingConnection = nil
+local HypnosisConnection = nil
+local MesmerismConnection = nil
+local SuggestionConnection = nil
+local InfluenceConnection = nil
+local ManipulationConnection = nil
+local ControlConnection = nil
+local DominationConnection = nil
+local SubjugationConnection = nil
+local EnslavementConnection = nil
+local PossessionConnection = nil
+local HauntingConnection = nil
+local CursingConnection = nil
+local HexingConnection = nil
+local VoodooConnection = nil
+local HoodooConnection = nil
+local ShamanismConnection = nil
+local PaganismConnection = nil
+local WiccaConnection = nil
+local DruidismConnection = nil
+local AnimismConnection = nil
+local TotemismConnection = nil
+local FetishismConnection = nil
+local IdolatryConnection = nil
+local IconographyConnection = nil
+local SymbolismConnection = nil
+local AllegoryConnection = nil
+local MetaphorConnection = nil
+local AnalogyConnection = nil
+local SimileConnection = nil
+local HyperboleConnection = nil
+local PersonificationConnection = nil
+local AlliterationConnection = nil
+local AssonanceConnection = nil
+local ConsonanceConnection = nil
+local OnomatopoeiaConnection = nil
+local IronyConnection = nil
+local SarcasmConnection = nil
+local SatireConnection = nil
+local ParodyConnection = nil
+local SpoofConnection = nil
+local MimicryConnection = nil
+local ImitationConnection = nil
+local ReplicationConnection = nil
+local ReproductionConnection = nil
+local DuplicationConnection = nil
+local CloningConnection = nil
+local CopyingConnection = nil
+local PastingConnection = nil
+local PrintingConnection = nil
+local ScanningConnection = nil
+local ImportingConnection = nil
+local ExportingConnection = nil
+local SavingConnection = nil
+local LoadingConnection = nil
+
+local function GetClosestPlayer(maxDistance)
+    local closestPlayer = nil
+    local shortestDistance = maxDistance
+    
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+            if distance < shortestDistance then
+                closestPlayer = player
+                shortestDistance = distance
+            end
+        end
+    end
+    
+    return closestPlayer
+end
+
+local function CreateFOVCircle(radius, color)
+    local circle = Drawing.new("Circle")
+    circle.Visible = true
+    circle.Thickness = 2
+    circle.Color = color
+    circle.Transparency = 1
+    circle.NumSides = 100
+    circle.Radius = radius
+    circle.Filled = false
+    return circle
+end
+
+local AimlockFOVCircle = CreateFOVCircle(AimlockFOV, Color3.fromRGB(255, 0, 0))
+local BulletFOVCircle = CreateFOVCircle(BulletFOV, Color3.fromRGB(0, 255, 0))
+
+local function UpdateFOVCircles()
+    AimlockFOVCircle.Position = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+    BulletFOVCircle.Position = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+    AimlockFOVCircle.Radius = AimlockFOV
+    BulletFOVCircle.Radius = BulletFOV
+end
+
+local ESPObjects = {}
+
+local function CreateESP(player)
+    local character = player.Character
+    if not character then return end
+    
+    local highlight = Instance.new("Highlight")
+    highlight.Name = player.Name .. "ESP"
+    highlight.Adornee = character
+    highlight.Parent = character
+    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+    highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+    highlight.FillTransparency = 0.5
+    highlight.OutlineTransparency = 0
+    
+    ESPObjects[player] = highlight
+end
+
+local function RemoveESP(player)
+    if ESPObjects[player] then
+        ESPObjects[player]:Destroy()
+        ESPObjects[player] = nil
+    end
+end
+
+local SpeedSection = MainTab:CreateSection("移动设置")
+local SpeedToggle = MainTab:CreateToggle({
+    Name = "自定义速度",
+    CurrentValue = false,
+    Flag = "SpeedToggle",
+    Callback = function(value)
+        SpeedEnabled = value
+        if SpeedEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.WalkSpeed = CurrentSpeed
+        end
+    end
+})
+
+local SpeedInput = MainTab:CreateInput({
+    Name = "速度数值",
+    PlaceholderText = "输入速度",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        CurrentSpeed = tonumber(text) or 16
+        if SpeedEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.WalkSpeed = CurrentSpeed
+        end
+    end
+})
+
+local JumpToggle = MainTab:CreateToggle({
+    Name = "自定义跳跃",
+    CurrentValue = false,
+    Flag = "JumpToggle",
+    Callback = function(value)
+        JumpEnabled = value
+        if JumpEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.JumpPower = CurrentJump
+        end
+    end
+})
+
+local JumpInput = MainTab:CreateInput({
+    Name = "跳跃数值",
+    PlaceholderText = "输入跳跃力",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        CurrentJump = tonumber(text) or 50
+        if JumpEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+            LocalPlayer.Character.Humanoid.JumpPower = CurrentJump
+        end
+    end
+})
+
+local FlyToggle = MainTab:CreateToggle({
+    Name = "飞行模式",
+    CurrentValue = false,
+    Flag = "FlyToggle",
+    Callback = function(value)
+        FlyEnabled = value
+        if FlyEnabled then
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.Name = "FlyVelocity"
+            bodyVelocity.Parent = LocalPlayer.Character.HumanoidRootPart
+            bodyVelocity.MaxForce = Vector3.new(400000, 400000, 400000)
+            
+            FlyConnection = RunService.Heartbeat:Connect(function()
+                if FlyEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local root = LocalPlayer.Character.HumanoidRootPart
+                    local camera = Workspace.CurrentCamera
+                    
+                    local flyDirection = Vector3.new()
+                    if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+                        flyDirection = flyDirection + camera.CFrame.LookVector
+                    end
+                    if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+                        flyDirection = flyDirection - camera.CFrame.LookVector
+                    end
+                    if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+                        flyDirection = flyDirection - camera.CFrame.RightVector
+                    end
+                    if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+                        flyDirection = flyDirection + camera.CFrame.RightVector
+                    end
+                    
+                    bodyVelocity.Velocity = flyDirection * FlySpeed
+                end
+            end)
+        elseif FlyConnection then
+            FlyConnection:Disconnect()
+            local bodyVelocity = LocalPlayer.Character.HumanoidRootPart:FindFirstChild("FlyVelocity")
+            if bodyVelocity then
+                bodyVelocity:Destroy()
+            end
+        end
+    end
+})
+
+local FlySpeedSlider = MainTab:CreateSlider({
+    Name = "飞行速度",
+    Range = {1, 200},
+    Increment = 1,
+    Suffix = "速度",
+    CurrentValue = 50,
+    Flag = "FlySpeed",
+    Callback = function(value)
+        FlySpeed = value
+    end
+})
+
+local AntiAFKToggle = MainTab:CreateToggle({
+    Name = "防挂机",
+    CurrentValue = false,
+    Flag = "AntiAFKToggle",
+    Callback = function(value)
+        AntiAFKEnabled = value
+        if AntiAFKEnabled then
+            AntiAFKConnection = RunService.Heartbeat:Connect(function()
+                if AntiAFKEnabled then
+                    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Space, false, nil)
+                    wait(0.1)
+                    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Space, false, nil)
+                end
+            end)
+        elseif AntiAFKConnection then
+            AntiAFKConnection:Disconnect()
+        end
+    end
+})
+
+local VisualsSection = VisualsTab:CreateSection("视觉设置")
+local ESPToggle = VisualsTab:CreateToggle({
+    Name = "ESP方框",
+    CurrentValue = false,
+    Flag = "ESPToggle",
+    Callback = function(value)
+        ESPEnabled = value
+        if ESPEnabled then
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer then
+                    CreateESP(player)
+                end
+            end
+        else
+            for player, highlight in pairs(ESPObjects) do
+                highlight:Destroy()
+            end
+            ESPObjects = {}
+        end
+    end
+})
+
+local InvisibleToggle = VisualsTab:CreateToggle({
+    Name = "隐形模式",
+    CurrentValue = false,
+    Flag = "InvisibleToggle",
+    Callback = function(value)
+        InvisibleEnabled = value
+        if InvisibleEnabled and LocalPlayer.Character then
+            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Transparency = 1
+                end
+            end
+        elseif LocalPlayer.Character then
+            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Transparency = 0
+                end
+            end
+        end
+    end
+})
+
+local NoclipToggle = VisualsTab:CreateToggle({
+    Name = "穿墙模式",
+    CurrentValue = false,
+    Flag = "NoclipToggle",
+    Callback = function(value)
+        NoclipEnabled = value
+    end
+})
+
+local ChamsToggle = VisualsTab:CreateToggle({
+    Name = "透视材质",
+    CurrentValue = false,
+    Flag = "ChamsToggle",
+    Callback = function(value)
+        ChamsEnabled = value
+        if ChamsEnabled then
+            ChamsConnection = RunService.Heartbeat:Connect(function()
+                for _, player in pairs(Players:GetPlayers()) do
+                    if player ~= LocalPlayer and player.Character then
+                        for _, part in pairs(player.Character:GetDescendants()) do
+                            if part:IsA("BasePart") then
+                                part.Material = Enum.Material.ForceField
+                                part.Transparency = 0.5
+                            end
+                        end
+                    end
+                end
+            end)
+        elseif ChamsConnection then
+            ChamsConnection:Disconnect()
+        end
+    end
+})
+
+local XRayToggle = VisualsTab:CreateToggle({
+    Name = "X射线",
+    CurrentValue = false,
+    Flag = "XRayToggle",
+    Callback = function(value)
+        XRayEnabled = value
+        if XRayEnabled then
+            for _, part in pairs(Workspace:GetDescendants()) do
+                if part:IsA("BasePart") and part.Transparency < 1 then
+                    part.Transparency = 0.5
+                end
+            end
+        else
+            for _, part in pairs(Workspace:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Transparency = 0
+                end
+            end
+        end
+    end
+})
+
+local FullbrightToggle = VisualsTab:CreateToggle({
+    Name = "全亮度",
+    CurrentValue = false,
+    Flag = "FullbrightToggle",
+    Callback = function(value)
+        FullbrightEnabled = value
+        if FullbrightEnabled then
+            Lighting.Ambient = Color3.new(1, 1, 1)
+            Lighting.Brightness = 2
+            Lighting.GlobalShadows = false
+        else
+            Lighting.Ambient = Color3.new(0.5, 0.5, 0.5)
+            Lighting.Brightness = 1
+            Lighting.GlobalShadows = true
+        end
+    end
+})
+
+local CombatSection = CombatTab:CreateSection("自瞄设置")
+local AimlockToggle = CombatTab:CreateToggle({
+    Name = "自瞄锁定",
+    CurrentValue = false,
+    Flag = "AimlockToggle",
+    Callback = function(value)
+        AimlockEnabled = value
+        AimlockFOVCircle.Visible = value
+    end
+})
+
+local AimlockFOVSlider = CombatTab:CreateSlider({
+    Name = "自瞄范围",
+    Range = {10, 360},
+    Increment = 1,
+    Suffix = "FOV",
+    CurrentValue = 50,
+    Flag = "AimlockFOV",
+    Callback = function(value)
+        AimlockFOV = value
+    end
+})
+
+local AimlockKeybind = CombatTab:CreateKeybind({
+    Name = "自瞄按键",
+    CurrentKeybind = "Q",
+    HoldToInteract = false,
+    Flag = "AimlockKeybind",
+    Callback = function()
+        if AimlockEnabled then
+            AimlockTarget = GetClosestPlayer(AimlockFOV)
+        end
+    end
+})
+
+local BulletSection = CombatTab:CreateSection("子弹追踪")
+local BulletToggle = CombatTab:CreateToggle({
+    Name = "子弹追踪",
+    CurrentValue = false,
+    Flag = "BulletToggle",
+    Callback = function(value)
+        BulletTrackEnabled = value
+        BulletFOVCircle.Visible = value
+    end
+})
+
+local BulletFOVSlider = CombatTab:CreateSlider({
+    Name = "追踪范围",
+    Range = {50, 500},
+    Increment = 1,
+    Suffix = "FOV",
+    CurrentValue = 100,
+    Flag = "BulletFOV",
+    Callback = function(value)
+        BulletFOV = value
+    end
+})
+
+local BulletKeybind = CombatTab:CreateKeybind({
+    Name = "锁定按键",
+    CurrentKeybind = "E",
+    HoldToInteract = false,
+    Flag = "BulletKeybind",
+    Callback = function()
+        if BulletTrackEnabled then
+            BulletTarget = GetClosestPlayer(BulletFOV)
+        end
+    end
+})
+
+local NoRecoilToggle = CombatTab:CreateToggle({
+    Name = "无后坐力",
+    CurrentValue = false,
+    Flag = "NoRecoilToggle",
+    Callback = function(value)
+        NoRecoilEnabled = value
+    end
+})
+
+local RapidFireToggle = CombatTab:CreateToggle({
+    Name = "快速开火",
+    CurrentValue = false,
+    Flag = "RapidFireToggle",
+    Callback = function(value)
+        RapidFireEnabled = value
+        if RapidFireEnabled then
+            RapidFireConnection = RunService.Heartbeat:Connect(function()
+                if RapidFireEnabled then
+                    mouse1click()
+                end
+            end)
+        elseif RapidFireConnection then
+            RapidFireConnection:Disconnect()
+        end
+    end
+})
+
+local InfiniteAmmoToggle = CombatTab:CreateToggle({
+    Name = "无限弹药",
+    CurrentValue = false,
+    Flag = "InfiniteAmmoToggle",
+    Callback = function(value)
+        InfiniteAmmoEnabled = value
+    end
+})
+
+local HitboxExpanderToggle = CombatTab:CreateToggle({
+    Name = "击中框扩展",
+    CurrentValue = false,
+    Flag = "HitboxExpanderToggle",
+    Callback = function(value)
+        HitboxExpanderEnabled = value
+        if HitboxExpanderEnabled then
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and player.Character then
+                    for _, part in pairs(player.Character:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.Size = part.Size * HitboxSize
+                        end
+                    end
+                end
+            end
+        else
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and player.Character then
+                    for _, part in pairs(player.Character:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.Size = part.Size / HitboxSize
+                        end
+                    end
+                end
+            end
+        end
+    end
+})
+
+local HitboxSizeSlider = CombatTab:CreateSlider({
+    Name = "击中框大小",
+    Range = {1, 10},
+    Increment = 0.1,
+    Suffix = "倍率",
+    CurrentValue = 5,
+    Flag = "HitboxSize",
+    Callback = function(value)
+        HitboxSize = value
+    end
+})
+
+local TeleportSection = TeleportTab:CreateSection("传送设置")
+local TeleportInput = TeleportTab:CreateInput({
+    Name = "目标玩家",
+    PlaceholderText = "输入玩家用户名",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        TeleportTarget = text
+    end
+})
+
+local TeleportOnceButton = TeleportTab:CreateButton({
+    Name = "传送一次",
+    Callback = function()
+        if TeleportTarget then
+            for _, player in pairs(Players:GetPlayers()) do
+                if player.Name:lower():find(TeleportTarget:lower()) and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+                    break
+                end
+            end
+        end
+    end
+})
+
+local TeleportLoopToggle = TeleportTab:CreateToggle({
+    Name = "循环传送",
+    CurrentValue = false,
+    Flag = "TeleportLoopToggle",
+    Callback = function(value)
+        TeleportLoopEnabled = value
+        if TeleportLoopEnabled then
+            TeleportLoopConnection = RunService.Heartbeat:Connect(function()
+                if TeleportTarget then
+                    for _, player in pairs(Players:GetPlayers()) do
+                        if player.Name:lower():find(TeleportTarget:lower()) and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                            LocalPlayer.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+                            break
+                        end
+                    end
+                end
+            end)
+        elseif TeleportLoopConnection then
+            TeleportLoopConnection:Disconnect()
+        end
+    end
+})
+
+local FunSection = FunTab:CreateSection("娱乐武器")
+local SwordToggle = FunTab:CreateToggle({
+    Name = "脚本剑",
+    CurrentValue = false,
+    Flag = "SwordToggle",
+    Callback = function(value)
+        SwordEnabled = value
+        if SwordEnabled then
+            local tool = Instance.new("Tool")
+            tool.Name = "魔法剑"
+            tool.RequiresHandle = false
+            tool.Activated:Connect(function()
+                local target = GetClosestPlayer(20)
+                if target and target.Character then
+                    local hum = target.Character:FindFirstChild("Humanoid")
+                    if hum then
+                        hum.Health = 0
+                    end
+                end
+            end)
+            tool.Parent = LocalPlayer.Backpack
+        else
+            local tool = LocalPlayer.Backpack:FindFirstChild("魔法剑")
+            if tool then
+                tool:Destroy()
+            end
+        end
+    end
+})
+
+local KnifeToggle = FunTab:CreateToggle({
+    Name = "脚本刀",
+    CurrentValue = false,
+    Flag = "KnifeToggle",
+    Callback = function(value)
+        KnifeEnabled = value
+        if KnifeEnabled then
+            local tool = Instance.new("Tool")
+            tool.Name = "魔法刀"
+            tool.RequiresHandle = false
+            tool.Activated:Connect(function()
+                local target = GetClosestPlayer(15)
+                if target and target.Character then
+                    local hum = target.Character:FindFirstChild("Humanoid")
+                    if hum then
+                        hum.Health = 0
+                    end
+                end
+            end)
+            tool.Parent = LocalPlayer.Backpack
+        else
+            local tool = LocalPlayer.Backpack:FindFirstChild("魔法刀")
+            if tool then
+                tool:Destroy()
+            end
+        end
+    end
+})
+
+local ClickTPTool = FunTab:CreateButton({
+    Name = "点击传送工具",
+    Callback = function()
+        local tool = Instance.new("Tool")
+        tool.Name = "点击传送"
+        tool.RequiresHandle = false
+        
+        tool.Activated:Connect(function()
+            local mouse = LocalPlayer:GetMouse()
+            if mouse.Target then
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(mouse.Hit.Position + Vector3.new(0, 5, 0))
+            end
+        end)
+        
+        tool.Parent = LocalPlayer.Backpack
+    end
+})
+
+local GravityGunToggle = FunTab:CreateToggle({
+    Name = "重力枪",
+    CurrentValue = false,
+    Flag = "GravityGunToggle",
+    Callback = function(value)
+        GravityGunEnabled = value
+        if GravityGunEnabled then
+            local tool = Instance.new("Tool")
+            tool.Name = "重力枪"
+            tool.RequiresHandle = false
+            
+            tool.Activated:Connect(function()
+                local mouse = LocalPlayer:GetMouse()
+                if mouse.Target then
+                    local part = mouse.Target
+                    part.Anchored = false
+                    part.CFrame = CFrame.new(mouse.Hit.Position + Vector3.new(0, 10, 0))
+                end
+            end)
+            
+            tool.Parent = LocalPlayer.Backpack
+        else
+            local tool = LocalPlayer.Backpack:FindFirstChild("重力枪")
+            if tool then
+                tool:Destroy()
+            end
+        end
+    end
+})
+
+local ForceFieldToggle = FunTab:CreateToggle({
+    Name = "力场护盾",
+    CurrentValue = false,
+    Flag = "ForceFieldToggle",
+    Callback = function(value)
+        ForceFieldEnabled = value
+        if ForceFieldEnabled and LocalPlayer.Character then
+            local forceField = Instance.new("ForceField")
+            forceField.Parent = LocalPlayer.Character
+        elseif LocalPlayer.Character then
+            local forceField = LocalPlayer.Character:FindFirstChildOfClass("ForceField")
+            if forceField then
+                forceField:Destroy()
+            end
+        end
+    end
+})
+
+local SizeChangerToggle = FunTab:CreateToggle({
+    Name = "体型修改",
+    CurrentValue = false,
+    Flag = "SizeChangerToggle",
+    Callback = function(value)
+        SizeChangerEnabled = value
+        if SizeChangerEnabled and LocalPlayer.Character then
+            LocalPlayer.Character.Humanoid.HipHeight = LocalPlayer.Character.Humanoid.HipHeight * SizeMultiplier
+            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Size = part.Size * SizeMultiplier
+                end
+            end
+        elseif LocalPlayer.Character then
+            LocalPlayer.Character.Humanoid.HipHeight = LocalPlayer.Character.Humanoid.HipHeight / SizeMultiplier
+            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Size = part.Size / SizeMultiplier
+                end
+            end
+        end
+    end
+})
+
+local SizeMultiplierSlider = FunTab:CreateSlider({
+    Name = "体型倍率",
+    Range = {0.1, 10},
+    Increment = 0.1,
+    Suffix = "倍率",
+    CurrentValue = 1,
+    Flag = "SizeMultiplier",
+    Callback = function(value)
+        SizeMultiplier = value
+    end
+})
+
+local WorldSection = WorldTab:CreateSection("世界控制")
+local TimeStopToggle = WorldTab:CreateToggle({
+    Name = "时间停止",
+    CurrentValue = false,
+    Flag = "TimeStopToggle",
+    Callback = function(value)
+        TimeStopEnabled = value
+        if TimeStopEnabled then
+            Lighting.ClockTime = 12
+            for _, part in pairs(Workspace:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Anchored = true
+                end
+            end
+        else
+            for _, part in pairs(Workspace:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Anchored = false
+                end
+            end
+        end
+    end
+})
+
+local WeatherControlToggle = WorldTab:CreateToggle({
+    Name = "天气控制",
+    CurrentValue = false,
+    Flag = "WeatherControlToggle",
+    Callback = function(value)
+        WeatherControlEnabled = value
+        if WeatherControlEnabled then
+            local atmosphere = Instance.new("Atmosphere")
+            atmosphere.Parent = Lighting
+            atmosphere.Decay = Color3.new(0.5, 0.5, 0.5)
+            atmosphere.Glare = 0
+            atmosphere.Haze = 0
+            atmosphere.Color = Color3.new(1, 1, 1)
+            atmosphere.Density = WeatherIntensity / 100
+        else
+            local atmosphere = Lighting:FindFirstChildOfClass("Atmosphere")
+            if atmosphere then
+                atmosphere:Destroy()
+            end
+        end
+    end
+})
+
+local WeatherIntensitySlider = WorldTab:CreateSlider({
+    Name = "天气强度",
+    Range = {0, 100},
+    Increment = 1,
+    Suffix = "强度",
+    CurrentValue = 50,
+    Flag = "WeatherIntensity",
+    Callback = function(value)
+        WeatherIntensity = value
+    end
+})
+
+local GravityToggle = WorldTab:CreateToggle({
+    Name = "重力控制",
+    CurrentValue = false,
+    Flag = "GravityToggle",
+    Callback = function(value)
+        GravityEnabled = value
+        if GravityEnabled then
+            Workspace.Gravity = GravityValue
+        else
+            Workspace.Gravity = 196.2
+        end
+    end
+})
+
+local GravitySlider = WorldTab:CreateSlider({
+    Name = "重力数值",
+    Range = {0, 196.2},
+    Increment = 1,
+    Suffix = "重力",
+    CurrentValue = 196.2,
+    Flag = "GravityValue",
+    Callback = function(value)
+        GravityValue = value
+        if GravityEnabled then
+            Workspace.Gravity = GravityValue
+        end
+    end
+})
+
+local VehicleSection = VehicleTab:CreateSection("载具功能")
+local CarFlyToggle = VehicleTab:CreateToggle({
+    Name = "载具飞行",
+    CurrentValue = false,
+    Flag = "CarFlyToggle",
+    Callback = function(value)
+        CarFlyEnabled = value
+    end
+})
+
+local CarSpeedToggle = VehicleTab:CreateToggle({
+    Name = "载具加速",
+    CurrentValue = false,
+    Flag = "CarSpeedToggle",
+    Callback = function(value)
+        CarSpeedEnabled = value
+        if CarSpeedEnabled then
+            for _, vehicle in pairs(Workspace:GetDescendants()) do
+                if vehicle:FindFirstChild("BodyVelocity") then
+                    vehicle.BodyVelocity.MaxForce = Vector3.new(400000, 400000, 400000) * CarSpeedValue
+                end
+            end
+        end
+    end
+})
+
+local CarSpeedSlider = VehicleTab:CreateSlider({
+    Name = "载具速度",
+    Range = {1, 500},
+    Increment = 1,
+    Suffix = "速度",
+    CurrentValue = 100,
+    Flag = "CarSpeedValue",
+    Callback = function(value)
+        CarSpeedValue = value
+    end
+})
+
+local CarJumpToggle = VehicleTab:CreateToggle({
+    Name = "载具跳跃",
+    CurrentValue = false,
+    Flag = "CarJumpToggle",
+    Callback = function(value)
+        CarJumpEnabled = value
+    end
+})
+
+local CarJumpSlider = VehicleTab:CreateSlider({
+    Name = "跳跃高度",
+    Range = {1, 100},
+    Increment = 1,
+    Suffix = "高度",
+    CurrentValue = 50,
+    Flag = "CarJumpValue",
+    Callback = function(value)
+        CarJumpValue = value
+    end
+})
+
+local MiscSection = MiscTab:CreateSection("杂项功能")
+local AutoClickToggle = MiscTab:CreateToggle({
+    Name = "自动点击",
+    CurrentValue = false,
+    Flag = "AutoClickToggle",
+    Callback = function(value)
+        AutoClickEnabled = value
+        if AutoClickEnabled then
+            AutoClickConnection = RunService.Heartbeat:Connect(function()
+                if AutoClickEnabled then
+                    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, nil, 0)
+                    wait(1/AutoClickSpeed)
+                    VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, nil, 0)
+                end
+            end)
+        elseif AutoClickConnection then
+            AutoClickConnection:Disconnect()
+        end
+    end
+})
+
+local AutoClickSlider = MiscTab:CreateSlider({
+    Name = "点击速度",
+    Range = {1, 100},
+    Increment = 1,
+    Suffix = "CPS",
+    CurrentValue = 10,
+    Flag = "AutoClickSpeed",
+    Callback = function(value)
+        AutoClickSpeed = value
+    end
+})
+
+local SpinbotToggle = MiscTab:CreateToggle({
+    Name = "旋转机器人",
+    CurrentValue = false,
+    Flag = "SpinbotToggle",
+    Callback = function(value)
+        SpinbotEnabled = value
+        if SpinbotEnabled then
+            SpinbotConnection = RunService.Heartbeat:Connect(function()
+                if SpinbotEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(SpinbotSpeed), 0)
+                end
+            end)
+        elseif SpinbotConnection then
+            SpinbotConnection:Disconnect()
+        end
+    end
+})
+
+local SpinbotSlider = MiscTab:CreateSlider({
+    Name = "旋转速度",
+    Range = {1, 100},
+    Increment = 1,
+    Suffix = "速度",
+    CurrentValue = 5,
+    Flag = "SpinbotSpeed",
+    Callback = function(value)
+        SpinbotSpeed = value
+    end
+})
+
+local FakeLagToggle = MiscTab:CreateToggle({
+    Name = "虚假延迟",
+    CurrentValue = false,
+    Flag = "FakeLagToggle",
+    Callback = function(value)
+        FakeLagEnabled = value
+        if FakeLagEnabled then
+            FakeLagConnection = RunService.Heartbeat:Connect(function()
+                if FakeLagEnabled then
+                    wait(FakeLagDelay/1000)
+                end
+            end)
+        elseif FakeLagConnection then
+            FakeLagConnection:Disconnect()
+        end
+    end
+})
+
+local FakeLagSlider = MiscTab:CreateSlider({
+    Name = "延迟时间",
+    Range = {1, 1000},
+    Increment = 1,
+    Suffix = "毫秒",
+    CurrentValue = 100,
+    Flag = "FakeLagDelay",
+    Callback = function(value)
+        FakeLagDelay = value
+    end
+})
+
+local AntiVoteKickToggle = MiscTab:CreateToggle({
+    Name = "防投票踢出",
+    CurrentValue = false,
+    Flag = "AntiVoteKickToggle",
+    Callback = function(value)
+        AntiVoteKickEnabled = value
+    end
+})
+
+local AntiBanToggle = MiscTab:CreateToggle({
+    Name = "防封禁",
+    CurrentValue = false,
+    Flag = "AntiBanToggle",
+    Callback = function(value)
+        AntiBanEnabled = value
+    end
+})
+
+local AntiCheatBypassToggle = MiscTab:CreateToggle({
+    Name = "反作弊绕过",
+    CurrentValue = false,
+    Flag = "AntiCheatBypassToggle",
+    Callback = function(value)
+        AntiCheatBypassEnabled = value
+    end
+})
+
+local FPSBoostToggle = MiscTab:CreateToggle({
+    Name = "FPS提升",
+    CurrentValue = false,
+    Flag = "FPSBoostToggle",
+    Callback = function(value)
+        FPSBoostEnabled = value
+        if FPSBoostEnabled then
+            settings().Rendering.QualityLevel = 1
+            settings().Rendering.MeshPartDetailLevel = Enum.MeshPartDetailLevel.Level04
+            settings().Rendering.EagerBulkExecution = true
+        end
+    end
+})
+
+local FPSSlider = MiscTab:CreateSlider({
+    Name = "FPS限制",
+    Range = {1, 999},
+    Increment = 1,
+    Suffix = "FPS",
+    CurrentValue = 60,
+    Flag = "FPSLimit",
+    Callback = function(value)
+        FPSLimit = value
+        if FPSBoostEnabled then
+            setfpscap(FPSLimit)
+        end
+    end
+})
+
+RunService.Heartbeat:Connect(function()
+    UpdateFOVCircles()
+    
+    if AimlockEnabled and AimlockTarget and AimlockTarget.Character and AimlockTarget.Character:FindFirstChild("HumanoidRootPart") then
+        local camera = Workspace.CurrentCamera
+        camera.CFrame = CFrame.new(camera.CFrame.Position, AimlockTarget.Character.HumanoidRootPart.Position)
+    end
+    
+    if BulletTrackEnabled and BulletTarget and BulletTarget.Character and BulletTarget.Character:FindFirstChild("HumanoidRootPart") then
+        local targetPos = BulletTarget.Character.HumanoidRootPart.Position
+        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.Position, Vector3.new(targetPos.X, LocalPlayer.Character.HumanoidRootPart.Position.Y, targetPos.Z))
+        end
+    end
+    
+    if NoclipEnabled and LocalPlayer.Character then
+        for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
+            end
+        end
+    end
+end)
+
+Players.PlayerAdded:Connect(function(player)
+    if ESPEnabled then
+        CreateESP(player)
+    end
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+    RemoveESP(player)
+end)
+
+for _, player in pairs(Players:GetPlayers()) do
+    if player ~= LocalPlayer and ESPEnabled then
+        CreateESP(player)
+    end
+end
+
+Rayfield:LoadConfiguration()

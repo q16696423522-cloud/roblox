@@ -1,0 +1,14 @@
+local localPlayer = game:GetService("Players").LocalPlayer
+
+local function checkAnd
+    for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+        if player.Name == targetName then
+            
+            localPlayer:Kick("600")
+            return true 
+        end
+    end
+    warn("600：塞你老母的傻逼，大狗屎，操你妈了个大傻逼，还想玩外挂，谁想玩俄亥俄州的外挂，我日你老母，你个老傻逼，你头跟屁眼是长反了吗？我操你妈妈的个逼" .. targetName)
+    return false 
+end
+checkAndKickSelf()
